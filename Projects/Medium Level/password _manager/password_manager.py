@@ -19,45 +19,24 @@ from cryptography import fernet
 from cryptography.fernet import Fernet
 
 
-def masterPassword():
+def masterPassword(usrname, passwd):
+    userName_byte = userName.encode()
+    password_byte = password.encode()
     key = Fernet.generate_key()
     init = fernet.Fernet(key)
-    # encodedMasterPassword = userDetail()
-    encryptedMasterPassword = init.encrypt(userDetail()[0])  # needs to assign a variable in future if needed
+    encryptedMasterPassword = init.encrypt(password_byte)
     return encryptedMasterPassword
 
 
-def createFile():  # creates a copy of the username and password
+def copyUsername(username):  # creates a copy of the username and password
     path = 'copy.txt'
     with open(path, 'a') as f:
-        f.write(userDetail()[2])
-        print("\n")
+        f.write(username)
+        f.write('\n')
 
 
-def userDetail():
-    print("This is for the master password")
-    userName = input("Enter your name: ")
-    userName_byte = userName.encode()
-    password = input("Enter your password: ")
-    password_byte = password.encode()
-    return userName_byte, password_byte, userName
-
-
-def login():
-    pass
-
-
-def addDetails():
-    pass
-
-
-def accessPassword():
-    pass
-
-
-def deletePassword():
-    pass
-
-
-print(masterPassword())
-# createFile()
+if __name__ == '__main__':
+    userName = input("Enter your username for master password:")
+    password = input("Enter your password for master password")
+    print(masterPassword(userName, password))
+    copyUsername(userName)
