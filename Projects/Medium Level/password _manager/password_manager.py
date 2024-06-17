@@ -34,9 +34,20 @@ def copyUsername(username):  # creates a copy of the username and password
         f.write(username)
         f.write('\n')
 
+# def createNewUser():
+
 
 if __name__ == '__main__':
     userName = input("Enter your username for master password:")
     password = input("Enter your password for master password")
     print(masterPassword(userName, password))
     copyUsername(userName)
+
+
+
+"""
+reminder:
+checks whethther the username is available or not 
+if not then return an error message
+else create a unique file for the user
+"""
